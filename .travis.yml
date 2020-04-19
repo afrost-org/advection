@@ -1,0 +1,57 @@
+# For more information about the configurations used in this file, please
+# see the Travis CI documentation: https://docs.travis-ci.com
+
+language: python
+dist: xenial
+
+python:
+  - '3.7.3'
+
+node_js:
+  - "10"
+
+addons:
+  postgresql: "11.2"
+
+cache:
+  pip: true
+  directories:
+  - node_modules  # NPM packages
+
+services:
+  - postgresql
+
+env:
+  global:
+  - PGDATABASE=postgres
+  - PGHOST=localhost
+  - PGUSER=postgres
+  - PGPASS=''
+  - PGPORT=5433
+  - DATABASE_URL=postgres://${PGUSER}:${PGPASS}@${PGHOST}:${PGPORT}/${PGDATABASE}
+  - POSTGRES_IMAGE=postgres:11
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get --yes remove postgresql\*
+  - sudo apt-get install -y postgresql-11 postgresql-client-11
+  - sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
+  - sudo service postgresql restart 11
+
+before_cache:
+  - rm -f $HOME/.cache/pip/log/debug.log
+
+install:
+  - pip install -r requirements/development.txt
+  - npm install
+
+script:
+- flake8
+- npm run build
+- pytest --cov -v --tb=native
+- ansible-playbook -i provisioner/hosts provisioner/site.yml --syntax-check
+
+notifications:
+  email:
+    on_success: change  # [always|never|change]
+    on_failure: always  # [always|never|change]

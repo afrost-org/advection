@@ -1,0 +1,66 @@
+[vagrant]
+192.168.33.12
+
+[vagrant:vars]
+vm=1
+deploy_env=vagrant
+project_namespace={{ project_name }}-{{ deploy_env }}
+user=vagrant
+project_path=/home/vagrant/advection
+venv_path=/home/vagrant/venv
+django_requirements_file=requirements/development.txt
+django_settings="settings.development"
+use_letsencrypt=False
+pg_db=advection
+pg_user=vagrant
+pg_password=vagrant
+domain_name=vagrant.advection.com
+
+[dev]
+dev.advection.com
+
+[dev:vars]
+vm=0
+deploy_env=dev
+user=ubuntu
+project_namespace={{ project_name }}-{{ deploy_env }}
+project_path=/home/ubuntu/{{ deploy_env }}/advection
+venv_path={{ project_path }}/venv
+use_letsencrypt=True
+letsencrypt_email=anuvrat@anuvrat.in
+django_requirements_file=requirements.txt
+django_settings="settings.production"
+domain_name=dev.advection.com
+
+
+[qa]
+qa.advection.com
+
+[qa:vars]
+vm=0
+deploy_env=qa
+user=ubuntu
+project_namespace={{ project_name }}-{{ deploy_env }}
+project_path=/home/ubuntu/{{ deploy_env }}/advection
+venv_path={{ project_path }}/venv
+use_letsencrypt=True
+letsencrypt_email=anuvrat@anuvrat.in
+django_requirements_file=requirements.txt
+django_settings="settings.production"
+domain_name=qa.advection.com
+
+[production]
+advection.com
+
+[production:vars]
+vm=0
+deploy_env=prod
+user=ubuntu
+project_namespace={{ project_name }}-{{ deploy_env }}
+project_path=/home/ubuntu/{{ deploy_env }}/advection
+venv_path={{ project_path }}/venv
+use_letsencrypt=True
+letsencrypt_email=anuvrat@anuvrat.in
+django_requirements_file=requirements.txt
+django_settings="settings.production"
+domain_name=advection.com

@@ -1,0 +1,7 @@
+---
+project_name: advection
+project_repo_url: git@github.com:afrost-org/advection.git
+project_repo_remote: origin
+repo_version: master
+pg_gis: False
+ansible_python_interpreter: /usr/bin/python3
