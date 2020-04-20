@@ -4,15 +4,15 @@ See: http://www.fabfile.org/
 """
 
 # Standard Library
+import os
 from contextlib import contextmanager as _contextmanager
 from functools import partial
 from os.path import dirname, isdir, join
 
 # Third Party Stuff
-import os
+from fabric import api as fab
 from fabric.api import env
 from fabric.api import local as fabric_local
-from fabric import api as fab
 
 local = partial(fabric_local, shell='/bin/bash')
 
@@ -127,7 +127,7 @@ def dev():
     env.host_group = "dev"
     env.remote = "origin"
     env.branch = "master"
-    env.hosts = ["dev.advection.com"]
+    env.hosts = ["dev.afrost.org"]
     env.dotenv_path = "/home/ubuntu/dev/advection/.env"
     env.config_setter = fab.run
 
@@ -136,7 +136,7 @@ def qa():
     env.host_group = "qa"
     env.remote = "origin"
     env.branch = "qa"
-    env.hosts = ["qa.advection.com"]
+    env.hosts = ["qa.afrost.org"]
     env.dotenv_path = "/home/ubuntu/qa/advection/.env"
     env.config_setter = fab.run
 
@@ -145,7 +145,7 @@ def prod():
     env.host_group = "production"
     env.remote = "origin"
     env.branch = "prod"
-    env.hosts = ["prod.advection.com"]
+    env.hosts = ["prod.afrost.org"]
     env.dotenv_path = "/home/ubuntu/prod/advection/.env"
     env.config_setter = fab.run
 

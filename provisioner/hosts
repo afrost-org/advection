@@ -17,7 +17,7 @@ pg_password=vagrant
 domain_name=vagrant.advection.com
 
 [dev]
-dev.advection.com
+dev.afrost.org
 
 [dev:vars]
 vm=0
@@ -30,11 +30,11 @@ use_letsencrypt=True
 letsencrypt_email=anuvrat@anuvrat.in
 django_requirements_file=requirements.txt
 django_settings="settings.production"
-domain_name=dev.advection.com
+domain_name=dev.afrost.org
 
 
 [qa]
-qa.advection.com
+qa.afrost.org
 
 [qa:vars]
 vm=0
@@ -47,10 +47,10 @@ use_letsencrypt=True
 letsencrypt_email=anuvrat@anuvrat.in
 django_requirements_file=requirements.txt
 django_settings="settings.production"
-domain_name=qa.advection.com
+domain_name=qa.afrost.org
 
 [production]
-advection.com
+afrost.org
 
 [production:vars]
 vm=0
@@ -63,4 +63,4 @@ use_letsencrypt=True
 letsencrypt_email=anuvrat@anuvrat.in
 django_requirements_file=requirements.txt
 django_settings="settings.production"
-domain_name=advection.com
+domain_name=afrost.org

@@ -14,7 +14,7 @@ base_ubuntu:
       - git
       - htop
       - curl
-      - python-dev
+      - "python-dev"
       - python3.7
       - python3.7-dev
       - python-setuptools
@@ -31,4 +31,3 @@ base_ubuntu:
       - postgresql-client
       - libpq-dev
       - ca-certificates
-
